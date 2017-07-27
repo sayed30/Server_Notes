@@ -1,0 +1,57 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--                                                                                                                                                       
+Server Notes will hold notes about issues that arise on the servers.                                                                                       
+                                                                                                                                                           
+Name: Sayed Hussaini                                                                                                                                       
+Class: CIS 3303                                                                                                                                            
+Section: x                                                                                                                                                 
+-->
+<html>
+
+<head>
+<title>Server Notes</title>
+
+
+</head>
+
+<body>
+
+<p>Server Notes</p>
+
+<form action="/formDone" enctype="multipart/form-data" method="post">
+  Host Name:<br>
+  <input type="text" name="hostname" value="">
+  <br>
+  Problem:<br>
+  <input type="text" name="problem" value="">
+<br>
+  Priority:  <br>
+  <input type="text" name ="Priority" value="">
+
+<br>
+<input type="checkbox" name="mail" value="">E-mail<br>
+<script>
+ $('#checkbox').change(function(){
+     cb = $(this);
+     cb.val(cb.prop('True'));
+ });
+</script>
+
+
+  <input type="submit" value="Submit">
+
+</form>
+<a href="/button"><button onclick="createCluster('aaaaaa')">Click me</button></a>
+<a href="/mail"><button onclick="createCluster('aaaaaa')">Click me</button></a>
+
+
+
+
+</body>
+
+
+
+
+</html>

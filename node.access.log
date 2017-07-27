@@ -1,0 +1,19 @@
+Server Started on port 3000
+[0mGET / [36m304 [0m8.216 ms - -[0m
+[0mGET /button [36m304 [0m1.560 ms - -[0m
+search
+
+[0mPOST /formSearch [32m200 [0m27.736 ms - 50[0m
+Path {
+  start: 
+   Node {
+     identity: Integer { low: 3, high: 0 },
+     labels: [ 'Cluster' ],
+     properties: { name: '' } },
+  end: 
+   Node {
+     identity: Integer { low: 104, high: 0 },
+     labels: [ 'Problem' ],
+     properties: { Priority: '', name: '' } },
+  segments: [ PathSegment { start: [Object], relationship: [Object], end: [Object] } ],
+  length: 1 }

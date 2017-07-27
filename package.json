@@ -1,0 +1,22 @@
+{
+  "name": "idk",
+  "version": "1.0.0",
+  "main": "hello.js",
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "ejs": "^2.4.2",
+    "morgan": "*",
+    "neo4j-driver": "*",
+    "node-neo4j": "*",
+    "formidable": "*",
+    "nodemailer":"*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

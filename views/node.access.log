@@ -1,0 +1,32 @@
+Server Started on port 3000
+[0mGET / [36m304 [0m20.964 ms - -[0m
+[0mGET /button [36m304 [0m2.290 ms - -[0m
+search
+12
+[0mPOST /formSearch [32m200 [0m30.877 ms - 17[0m
+Path {
+  start: 
+   Node {
+     identity: Integer { low: 1, high: 0 },
+     labels: [ 'Cluster' ],
+     properties: { name: '12' } },
+  end: 
+   Node {
+     identity: Integer { low: 2, high: 0 },
+     labels: [ 'Problem' ],
+     properties: { Priority: '1', name: '12' } },
+  segments: [ PathSegment { start: [Object], relationship: [Object], end: [Object] } ],
+  length: 1 }
+Path {
+  start: 
+   Node {
+     identity: Integer { low: 1, high: 0 },
+     labels: [ 'Cluster' ],
+     properties: { name: '12' } },
+  end: 
+   Node {
+     identity: Integer { low: 11, high: 0 },
+     labels: [ 'Problem' ],
+     properties: { Priority: '2', name: 'mem leak' } },
+  segments: [ PathSegment { start: [Object], relationship: [Object], end: [Object] } ],
+  length: 1 }

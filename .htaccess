@@ -1,0 +1,2 @@
+# htaccess
+AddType application/x-httpd-php .htm .html
