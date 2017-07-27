@@ -1,5 +1,5 @@
 {
-  "name": "idk",
+  "name": "server-notes",
   "version": "1.0.0",
   "main": "hello.js",
   "dependencies": {
@@ -10,13 +10,24 @@
     "neo4j-driver": "*",
     "node-neo4j": "*",
     "formidable": "*",
-    "nodemailer":"*"
+    "nodemailer": "*"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Sayed Hussaini",
   "license": "ISC",
-  "description": ""
+  "description": "Tracks problems in server clusters.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sayed30/Server_Notes.git"
+  },
+  "keywords": [
+    "server"
+  ],
+  "bugs": {
+    "url": "https://github.com/sayed30/Server_Notes/issues"
+  },
+  "homepage": "https://github.com/sayed30/Server_Notes#readme"
 }
