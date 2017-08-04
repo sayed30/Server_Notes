@@ -10,21 +10,15 @@ var http = require('http');
 var fs = require('fs');
 var formidable = require("formidable");
 var util = require('util');
-
 var nodemailer = require('nodemailer');
 var hostnameField='';
 var problemField='';
 var priorityField =''; 
 var mailField='';
 var searchField='';
-//var txtFile = "./SearchOutput.txt";
-//var file = new File(txtFile);
-//var access = fs.createWriteStream('./node.access.log');
-//process.stdout.write = process.stderr.write = access.write.bind(access);
 var router = express.Router();
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine','ejs');
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -69,8 +63,6 @@ function createProblem(Problem){
                                       'MERGE (n:Problem{name:$problem}) RETURN n',
                                       {problem:Problem
 				      });
-    //name:cluster;                                                                                                                   
-
 
     resultPromise.then(result => {
             session.close();
@@ -87,10 +79,10 @@ function createProblem(Problem){
         });
 
 }
+/*
+ * Function that searchs the database for the entrend search field. Current not in use.
+ */
 
-var logger = fs.createWriteStream('log.json', {
-	flags: 'a' // 'a' means appending (old data will be preserved)
-    });
 function search(searchField){
     //  file.open("w");
     session.run('MATCH p =(a { name:$searchField })-[r]->(b) RETURN *;',  {searchField:searchField})
@@ -153,11 +145,6 @@ function SetClusterPriority(Priority,Problem){
                                       'MATCH (n:Problem{name:$problemName}) SET n.Priority =$problem',
                                       {problem:Priority,problemName:Problem
                                       });
-    //name:cluster;                                                                                                                                                                  
-
-    // if priority > 3 you get an email(){ }
-
-
     resultPromise.then(result => {
             session.close();
 
@@ -165,11 +152,6 @@ function SetClusterPriority(Priority,Problem){
             const node = singleRecord.get(0);
 
             console.log(node.properties.name);
-
-            // on application exit:                                                                                                  \                                               
-
-            //driver.close();                                                                                                        \                                               
-
         });
 
 
@@ -183,11 +165,8 @@ function SetClusterPriority(Priority,Problem){
  */
 
 app.get('/', function(req,res){
-	//	res.render('form');
+
 	res.sendFile(__dirname+'/views/index.html');
-	//	if(req.method=='POST'){
-	//     processFormFieldsIndividual(req,res);
-	//	}
 
 
     });
@@ -196,10 +175,8 @@ app.get('/', function(req,res){
  */
 
 app.post('/formDone',function(req,res){
-	//	if(req.method.toLowerCase()=='post'){
+
 	processFormFieldsIndividual(req,res);
-	   //createCluster("5");
-	//mail(); 
 	
 });
 
@@ -210,8 +187,8 @@ app.get('/mail',function(req,res){
     });
 
 app.get('/button',function(req,res){
-	//res.sendFile(__dirname+'/views/index1.html')
-	res.sendFile(__dirname+'/views/searchForm.html');
+
+	res.sendFile(__dirname+'/views/index1.html');
     });
 app.post('/formSearch',function(req,res){
 
@@ -300,9 +277,6 @@ function displayForm(res) {
  * Process the text boxes associated with the HTML page.
  */
 function processFormFieldsIndividual(req, res) {
-    //Store the data from the fields in your data store.
-    //The data store could be a file or database or any other store based
-    //on your application.
     var fields = [];
     var form = new formidable.IncomingForm();
     form.on('field', function (field, value) {
@@ -321,11 +295,9 @@ function processFormFieldsIndividual(req, res) {
 	    }
 	    if(field ='priority'){
 		priorityField = value;
-
-	    }
-	    if(field='mail'){
-		mailField = value;
-
+		if(value ==1){
+		    mail();
+		}
 	    }
 	});
 
@@ -335,9 +307,7 @@ function processFormFieldsIndividual(req, res) {
 	    mergeClusterProblem(hostnameField,problemField);
 	    SetClusterPriority(priorityField,problemField);
 	    //	    search();
-	    if(mailField = 'True'){
-		//	mail();
-	    }
+	
 	    res.writeHead(200, {
 		    'content-type': 'text/plain'
 			});
@@ -349,15 +319,14 @@ function processFormFieldsIndividual(req, res) {
     form.parse(req);
 }
 function mail(){
-    var transporter = nodemailer.createTransport('smtps://email@gmail.com:password@smtp.gmail.com'
+    var transporter = nodemailer.createTransport('smtps://example@gmail.com:password@smtp.gmail.com'
     );
 var mailOptions = {
     from: '',
     to: '',
-    subject: 'Sending Email using Node.js',
-    text: ''
+    subject: 'Server Alert',
+    text: hostnameField+' '+problemField+' ' +priorityField
 };
-//if(priorityField > 3){
 transporter.sendMail(mailOptions, function(error, info){
 	if (error) {
 	    console.log(error);
@@ -365,7 +334,6 @@ transporter.sendMail(mailOptions, function(error, info){
 	    console.log('Email sent: ' + info.response);
 	}
     });
-//}
 }
 
 

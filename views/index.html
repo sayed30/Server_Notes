@@ -1,24 +1,38 @@
 <!DOCTYPE html
-PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--                                                                                                                                                       
-Server Notes will hold notes about issues that arise on the servers.                                                                                       
-                                                                                                                                                           
-Name: Sayed Hussaini                                                                                                                                       
-Class: CIS 3303                                                                                                                                            
-Section: x                                                                                                                                                 
 -->
+
 <html>
 
 <head>
+
 <title>Server Notes</title>
-
-
+<link rel="stylesheet" href="bootstrap.css"/>
+<link rel="stylesheet" href="bootstrap.theme.min.css"/>
 </head>
+<style>
+form {
+    width: 300px;
+    margin: 0 auto;
+    font-size="10";
 
+}
+input{
+width: 400px;
+}
+body { background:lightblue !important; }
+.search{
+width: 100px;
+margin: 0 auto;
+position:relative;
+left: 50%;
+
+}
+</style>
 <body>
 
-<p>Server Notes</p>
+<p style="font-size:50px">Server Notes</p>
+
+
 
 <form action="/formDone" enctype="multipart/form-data" method="post">
   Host Name:<br>
@@ -31,22 +45,14 @@ Section: x
   <input type="text" name ="Priority" value="">
 
 <br>
-<input type="checkbox" name="mail" value="">E-mail<br>
-<script>
- $('#checkbox').change(function(){
-     cb = $(this);
-     cb.val(cb.prop('True'));
- });
-</script>
 
-
-  <input type="submit" value="Submit">
-
+ <input class="btn btn-primary" type="submit" value="Submit">
 </form>
-<a href="/button"><button onclick="createCluster('aaaaaa')">Click me</button></a>
-<a href="/mail"><button onclick="createCluster('aaaaaa')">Click me</button></a>
 
+<a href="/button"><button class="btn btn-success search">Search</button></a>
 
+</div>
+</div>
 
 
 </body>

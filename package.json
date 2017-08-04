@@ -1,15 +1,16 @@
 {
   "name": "server-notes",
   "version": "1.0.0",
-  "main": "hello.js",
+  "main": "app.js",
   "dependencies": {
-    "express": "*",
     "body-parser": "*",
+    "bootstrap": "^3.3.7",
     "ejs": "^2.4.2",
+    "express": "*",
+    "formidable": "*",
     "morgan": "*",
     "neo4j-driver": "*",
     "node-neo4j": "*",
-    "formidable": "*",
     "nodemailer": "*"
   },
   "devDependencies": {},
