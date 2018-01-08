@@ -27,7 +27,7 @@ app.use(router);
 
 
 
-var driver = neo4j.driver('bolt://localhost', neo4j.auth.basic('neo4j', 'Getbig'));
+var driver = neo4j.driver('bolt://localhost', neo4j.auth.basic('neo4j', ''));
 const session = driver.session();
 
 /*
@@ -233,39 +233,9 @@ function displayForm(res) {
 		
 	    });
 	form.on('end', function () {
-		//createCluster(hostnameField);
-		//createProblem(problemField);
-		//mergeClusterProblem(hostnameField,problemField);
-		//SetClusterPriority(priorityField,problemField);
-		//console.log(search(searchField));                                                                                                                                                        
+		                                                                                                                                   
 		search(searchField);
 		res.send(__dirname+'/log.json');
-		//
-		//if(mailField = 'True'){
-		    //      mail();                                                                                                                                                      
-		//	}
-		/*fs.readFile('./node.access.log', function (err, data) {
-			res.writeHead(200, {
-				'Content-Type': 'text/html',
-				    'Content-Length': data.length
-				    });
-			res.write(data);
-			res.end();
-		    });
-		*/
-		/**res.writeHead(200, {
-			'content-type': 'text/plain'
-			    });
-
-		res.write('received the data:\n\n');
-		res.end(util.inspect({
-			    fields: fields
-				}));
-		*/
-		//res.send(helloworld.txt);
-		//res.end(util.inspect({
-		//    fields: fields
-		//	}));
 	    });
 	form.parse(req);
     }
