@@ -25,8 +25,6 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(router);
 
-
-
 var driver = neo4j.driver('bolt://localhost', neo4j.auth.basic('neo4j', ''));
 const session = driver.session();
 
@@ -38,17 +36,11 @@ const resultPromise = session.run(
 				  'MERGE (a:Cluster {name: $name}) RETURN a',
 				  {name: cluster}
 				  );
-
 resultPromise.then(result => {
-	session.close();
-    
+	session.close(); 
 	const singleRecord = result.records[0];
 	const node = singleRecord.get(0);
-
 	console.log(node.properties.name);
-
-	// on application exit:
-	//driver.close();
     });
 
 }
@@ -57,30 +49,21 @@ resultPromise.then(result => {
  */
 
 function createProblem(Problem){
-    
     const resultPromise = session.run(
 				     
                                       'MERGE (n:Problem{name:$problem}) RETURN n',
                                       {problem:Problem
 				      });
-
     resultPromise.then(result => {
             session.close();
-
             const singleRecord = result.records[0];
             const node = singleRecord.get(0);
-
-            console.log(node.properties.name);
-
-            // on application exit:                                                                                                  \
-                                                                                                                                      
-            //driver.close();                                                                                                        \
+            console.log(node.properties.name);                                                                                     \
                                                                                                                                       
         });
-
 }
 /*
- * Function that searchs the database for the entrend search field. Current not in use.
+ * Function that searchs the database for the entrend search field. Currently not in use.
  */
 
 function search(searchField){
@@ -88,31 +71,21 @@ function search(searchField){
     session.run('MATCH p =(a { name:$searchField })-[r]->(b) RETURN *;',  {searchField:searchField})
 	//{searchField:searchField}
 	.subscribe(
-		   {
-		       
+		   {		       
 		       onNext: function (record) {
 			
 			   var node = record.get('p');
 			   logger.log(node);
-
-
-
-
 		       },
 			   onCompleted: function () {
-			   // Completed!
-			   
 			   session.close();
 		       },
 			   onError: function (error) {
 			   console.log(error);
 		       }
 		   }
-		   );
-       
+		   );       
 }
-
-
 
 /*
  * This function merges the entered hostname with the problem. 
@@ -154,21 +127,12 @@ function SetClusterPriority(Priority,Problem){
             console.log(node.properties.name);
         });
 
-
-
-
-
-
 }
 /*
  * First thing that is recieved when the server starts listening. 
  */
-
 app.get('/', function(req,res){
-
 	res.sendFile(__dirname+'/views/index.html');
-
-
     });
 /*
  * Posts the results of the submit button, calls process Fields Function. 
@@ -190,15 +154,10 @@ app.get('/button',function(req,res){
 
 	res.sendFile(__dirname+'/views/index1.html');
     });
+
 app.post('/formSearch',function(req,res){
-
 	processFormFieldsSearch(req,res);
-	
-
-
     });
-
-
 
 /*
  * Displays the HTML page, first function that is called.
@@ -223,14 +182,10 @@ function displayForm(res) {
 	form.on('field', function (field, value) {
 		console.log(field);
 		console.log(value);
-
-
 		fields[field] = value;
 		if(field =='search'){
 		    searchField = value;
-
-		}
-		
+		}		
 	    });
 	form.on('end', function () {
 		                                                                                                                                   
@@ -239,9 +194,6 @@ function displayForm(res) {
 	    });
 	form.parse(req);
     }
-
-
-
 
 /*
  * Process the text boxes associated with the HTML page.
@@ -252,12 +204,9 @@ function processFormFieldsIndividual(req, res) {
     form.on('field', function (field, value) {
 	    console.log(field);
 	    console.log(value);
-	   
-	
 	    fields[field] = value;
 	    if(field =='hostname'){
-	    hostnameField = value;
-	    
+	    hostnameField = value;	    
 	    }
 	    if(field=='problem'){
 	   
@@ -306,10 +255,6 @@ transporter.sendMail(mailOptions, function(error, info){
     });
 }
 
-
-
 app.listen(3000);
 console.log('Server Started on port 3000');
 module.exports = app;
-
-
